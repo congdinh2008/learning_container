@@ -1,0 +1,19 @@
+version: '3.0'
+
+# ASP.NET Core 6 with Azure SQL Edge
+services:
+  web:
+    build:
+      context: ./TodoApp.MVC
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - sqlserver
+  sqlserver:
+    image: mcr.microsoft.com/azure-sql-edge
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=abcd@1234
