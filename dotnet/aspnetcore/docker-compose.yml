@@ -10,6 +10,14 @@ services:
       - "8000:80"
     depends_on:
       - sqlserver
+  webapi:
+    build:
+      context: ./TodoApp.API
+      dockerfile: Dockerfile
+    ports:
+      - "9000:80"
+    depends_on:
+      - sqlserver
   sqlserver:
     image: mcr.microsoft.com/azure-sql-edge
     ports:
